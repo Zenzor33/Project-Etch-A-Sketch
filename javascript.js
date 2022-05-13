@@ -10,7 +10,7 @@ function createContainer() {
 function addListener() {
   const getSquares = document.getElementsByClassName('square');
 	const squares = Array.from(getSquares);
-	console.log(squares);
+	// console.log(squares);
 	squares.forEach(square => {
 		square.addEventListener('mouseenter', function () {
 			// console.log(`Square number ${square.textContent}`);
@@ -52,3 +52,30 @@ You should be able to enter 64 and have a brand new 64x64 grid pop up without ch
 */
 
 // add button to top of the screen
+function createBtn () {
+	// add div to body (prepend to top)
+	const body = document.querySelector('body');
+	const divTop = document.createElement('div');
+	divTop.classList = 'top';
+	body.prepend(divTop);
+	// create button
+	const btn1 = document.createElement('button');
+	btn1.classList.add('button');
+	btn1.textContent = 'Settings';
+	divTop.appendChild(btn1);
+	addListenerBtn();
+}
+
+createBtn();
+
+function addListenerBtn() {
+	// send the user a popup asking for the number of squares per side for the new grid
+	const btn1 = document.querySelector('.button')
+	btn1.addEventListener('mouseup', function() {
+		const num = window.prompt('enter number of squares per side');
+		generateGrid(num*num);
+	})
+}
+
+// Once entered, the existing grid should be removed and a new grid should be generated in the same total space as before (e.g. 960px wide) so that you’ve got a new sketch pad.
+
