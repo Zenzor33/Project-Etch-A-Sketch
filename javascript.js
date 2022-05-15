@@ -7,7 +7,7 @@ function createContainer() {
 }
 
 // Set up an event listener for all divs in the grid container
-function addListener() {
+function addListeners() {
   const getSquares = document.getElementsByClassName('square');
 	const squares = Array.from(getSquares);
 	// console.log(squares);
@@ -35,10 +35,10 @@ function generateGrid(num) {
     let div = document.createElement('div');
 	  div.classList.add('square');
 	  div.textContent = `${i+1}`;
-		addListener();
     gridContainer.appendChild(div);
     // console.log(`generated grids: ${i+1}`)
   }
+	addListeners();
 }
 
 generateGrid(16*16);
@@ -73,6 +73,12 @@ function addListenerBtn() {
 	const btn1 = document.querySelector('.button')
 	btn1.addEventListener('mouseup', function() {
 		const num = window.prompt('enter number of squares per side');
+		if (num >= 100) {
+			alert('Choose a number between 0 and 100');
+			return;
+		}
+		const grid = document.querySelector('.container');
+		grid.remove();
 		generateGrid(num*num);
 	})
 }

@@ -1,5 +1,5 @@
 .container {
-    width: 960px;
+    width: 960px; /* 60 square pixels per square */
     height: 960px;
     flex-wrap: wrap;
     /* border: 5px solid blue; */
