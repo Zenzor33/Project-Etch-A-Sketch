@@ -2,7 +2,7 @@
 CODE REFACTOR
 
 EXISTING FUNCTIONS:
-createContainer() 
+createContainer()
 - Creates a "container" div to hold the 16x16 grid
 addEventListenersToSquares()
 - Adds event listeners to all divs in the container
@@ -56,55 +56,55 @@ Solutions:
 
 // create a container div to hold the 16x16 square divs
 function createGridContainer() {
-  const body = document.querySelector('body');
-  const gridContainer = document.createElement('div');
-  gridContainer.classList.add('container');
+  const body = document.querySelector("body");
+  const gridContainer = document.createElement("div");
+  gridContainer.classList.add("container");
   body.appendChild(gridContainer);
 }
 
 // Set up an event listener for all divs in the grid container
 function addEventListenersToSquares() {
-  const squares = Array.from(document.getElementsByClassName('square'));
+  const squares = Array.from(document.getElementsByClassName("square"));
 
-  squares.forEach(square => {
-    square.addEventListener('mouseenter', function () {
-      square.classList = 'squareEnter';
-    })
-  })
-  squares.forEach(square => {
-    square.addEventListener('mouseleave', function () {
-      square.classList = 'squareExit'
-    })
-  })
+  squares.forEach((square) => {
+    square.addEventListener("mouseenter", function () {
+      square.classList = "squareEnter";
+    });
+  });
+  squares.forEach((square) => {
+    square.addEventListener("mouseleave", function () {
+      square.classList = "squareExit";
+    });
+  });
 }
 
 function generateInitialGrid(num) {
   createGridContainer();
-  const gridContainer = document.querySelector('.container');
-  for (let i=0; i < num; i++) {
-    let square = document.createElement('div');
-    square.classList.add('square');
-    square.textContent = `${i+1}`;
+  const gridContainer = document.querySelector(".container");
+  for (let i = 0; i < num; i++) {
+    let square = document.createElement("div");
+    square.classList.add("square");
+    square.textContent = `${i + 1}`;
     gridContainer.appendChild(square);
   }
   addEventListenersToSquares();
 }
 
-generateInitialGrid(16*16);
+generateInitialGrid(16 * 16);
 
 function prependDivToBody() {
-  const body = document.querySelector('body');
-  const divContainerForBtn = document.createElement('div');
-  divContainerForBtn.classList = 'top';
+  const body = document.querySelector("body");
+  const divContainerForBtn = document.createElement("div");
+  divContainerForBtn.classList = "top";
   body.prepend(divContainerForBtn);
 }
 
 function createBtn() {
   prependDivToBody();
-  const btn1 = document.createElement('button');
-  const divContainerForBtn = document.querySelector('.top');
-  btn1.classList.add('button');
-  btn1.textContent = 'Settings';
+  const btn1 = document.createElement("button");
+  const divContainerForBtn = document.querySelector(".top");
+  btn1.classList.add("button");
+  btn1.textContent = "Settings";
   divContainerForBtn.appendChild(btn1);
   addListenerToButton();
 }
@@ -113,34 +113,34 @@ createBtn();
 
 function generateNewGrid(num) {
   createGridContainer();
-  const gridContainer = document.querySelector('.container');
+  const gridContainer = document.querySelector(".container");
   const previousGridWidth = gridContainer.clientWidth;
   const squareWidth = previousGridWidth / Math.sqrt(num);
-  for (let i=0; i < num; i++) {
-    let div = document.createElement('div');
-    div.classList.add('square');
+  for (let i = 0; i < num; i++) {
+    let div = document.createElement("div");
+    div.classList.add("square");
     div.style.width = `${squareWidth - 10}px`;
-    div.textContent = `${i+1}`;
+    div.textContent = `${i + 1}`;
     gridContainer.appendChild(div);
   }
   addEventListenersToSquares();
 }
 
 function removeCurrentGrid() {
-  const grid = document.querySelector('.container');
+  const grid = document.querySelector(".container");
   grid.remove();
 }
 
 function addListenerToButton() {
   // send the user a popup asking for the number of squares per side for the new grid
-  const btn1 = document.querySelector('.button')
-  btn1.addEventListener('mouseup', function() {
-    const num = window.prompt('enter number of squares per side');
+  const btn1 = document.querySelector(".button");
+  btn1.addEventListener("mouseup", function () {
+    const num = window.prompt("enter number of squares per side");
     if (num >= 100) {
-      alert('Choose a number between 0 and 100');
+      alert("Choose a number between 0 and 100");
     } else {
-    removeCurrentGrid();
-    generateNewGrid(num*num); // generate NEW grid
+      removeCurrentGrid();
+      generateNewGrid(num * num); // generate NEW grid
     }
-  })
+  });
 }
