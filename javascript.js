@@ -88,11 +88,11 @@ function generateNewGrid(num) {
   const gridContainer = document.querySelector('.container');
 	const previousGridWidth = gridContainer.clientWidth;
 	const squareWidth = previousGridWidth / Math.sqrt(num);
-	console.log(squareWidth);
-	console.log(`previous grid width ${previousGridWidth} 
-	 desired squares:${num},
-	 rows: ${Math.sqrt(num)}
-	 newSquareWidth = ${squareWidth}`)
+	// console.log(squareWidth);
+	// console.log(`previous grid width ${previousGridWidth} 
+	//  desired squares:${num},
+	//  rows: ${Math.sqrt(num)}
+	//  newSquareWidth = ${squareWidth}`)
   for (let i=0; i < num; i++) {
     let div = document.createElement('div');
 	  div.classList.add('square');
