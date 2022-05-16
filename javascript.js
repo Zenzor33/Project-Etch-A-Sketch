@@ -79,9 +79,42 @@ function addListenerBtn() {
 		}
 		const grid = document.querySelector('.container');
 		grid.remove();
-		generateGrid(num*num);
+		generateNewGrid(num*num); // generate NEW grid
 	})
 }
 
+function generateNewGrid(num) {
+  createContainer();
+  const gridContainer = document.querySelector('.container');
+	const previousGridWidth = gridContainer.clientWidth;
+	const squareWidth = previousGridWidth / Math.sqrt(num);
+	console.log(squareWidth);
+	console.log(`previous grid width ${previousGridWidth} 
+	 desired squares:${num},
+	 rows: ${Math.sqrt(num)}
+	 newSquareWidth = ${squareWidth}`)
+  for (let i=0; i < num; i++) {
+    let div = document.createElement('div');
+	  div.classList.add('square');
+		div.style.width = `${squareWidth - 10}px`;
+	  div.textContent = `${i+1}`;
+    gridContainer.appendChild(div);
+    // console.log(`generated grids: ${i+1}`)
+  }
+	addListeners();
+}
+
+
 // Once entered, the existing grid should be removed and a new grid should be generated in the same total space as before (e.g. 960px wide) so that you’ve got a new sketch pad.
 
+/*
+generateNewGrid() must:
+- Create a new grid with the width of the previous grid
+-- The container div width should be set to the width of the 
+previous grid
+-- 
+
+The total space never changes from the firs grid!
+I just need to change the width of the individual squares
+
+*/
