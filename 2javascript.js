@@ -67,15 +67,15 @@ function addEventListenersToSquares() {
   const squares = Array.from(document.getElementsByClassName('square'));
 
   squares.forEach(square => {
-		square.addEventListener('mouseenter', function () {
-			square.classList = 'squareEnter';
-		})
-	})
-	squares.forEach(square => {
-		square.addEventListener('mouseleave', function () {
-			square.classList = 'squareExit'
-		})
-	})
+    square.addEventListener('mouseenter', function () {
+      square.classList = 'squareEnter';
+    })
+  })
+  squares.forEach(square => {
+    square.addEventListener('mouseleave', function () {
+      square.classList = 'squareExit'
+    })
+  })
 }
 
 function generateInitialGrid(num) {
@@ -83,30 +83,30 @@ function generateInitialGrid(num) {
   const gridContainer = document.querySelector('.container');
   for (let i=0; i < num; i++) {
     let square = document.createElement('div');
-	  square.classList.add('square');
-	  square.textContent = `${i+1}`;
+    square.classList.add('square');
+    square.textContent = `${i+1}`;
     gridContainer.appendChild(square);
   }
-	addEventListenersToSquares();
+  addEventListenersToSquares();
 }
 
 generateInitialGrid(16*16);
 
 function prependDivToBody() {
-	const body = document.querySelector('body');
-	const divContainerForBtn = document.createElement('div');
-	divContainerForBtn.classList = 'top';
-	body.prepend(divContainerForBtn);
+  const body = document.querySelector('body');
+  const divContainerForBtn = document.createElement('div');
+  divContainerForBtn.classList = 'top';
+  body.prepend(divContainerForBtn);
 }
 
 function createBtn() {
   prependDivToBody();
-	const btn1 = document.createElement('button');
+  const btn1 = document.createElement('button');
   const divContainerForBtn = document.querySelector('.top');
-	btn1.classList.add('button');
-	btn1.textContent = 'Settings';
-	divContainerForBtn.appendChild(btn1);
-	addListenerToButton();
+  btn1.classList.add('button');
+  btn1.textContent = 'Settings';
+  divContainerForBtn.appendChild(btn1);
+  addListenerToButton();
 }
 
 createBtn();
@@ -114,16 +114,16 @@ createBtn();
 function generateNewGrid(num) {
   createGridContainer();
   const gridContainer = document.querySelector('.container');
-	const previousGridWidth = gridContainer.clientWidth;
-	const squareWidth = previousGridWidth / Math.sqrt(num);
+  const previousGridWidth = gridContainer.clientWidth;
+  const squareWidth = previousGridWidth / Math.sqrt(num);
   for (let i=0; i < num; i++) {
     let div = document.createElement('div');
-	  div.classList.add('square');
-		div.style.width = `${squareWidth - 10}px`;
-	  div.textContent = `${i+1}`;
+    div.classList.add('square');
+    div.style.width = `${squareWidth - 10}px`;
+    div.textContent = `${i+1}`;
     gridContainer.appendChild(div);
   }
-	addEventListenersToSquares();
+  addEventListenersToSquares();
 }
 
 function removeCurrentGrid() {
@@ -132,15 +132,15 @@ function removeCurrentGrid() {
 }
 
 function addListenerToButton() {
-	// send the user a popup asking for the number of squares per side for the new grid
-	const btn1 = document.querySelector('.button')
-	btn1.addEventListener('mouseup', function() {
-		const num = window.prompt('enter number of squares per side');
-		if (num >= 100) {
-			alert('Choose a number between 0 and 100');
-		} else {
+  // send the user a popup asking for the number of squares per side for the new grid
+  const btn1 = document.querySelector('.button')
+  btn1.addEventListener('mouseup', function() {
+    const num = window.prompt('enter number of squares per side');
+    if (num >= 100) {
+      alert('Choose a number between 0 and 100');
+    } else {
     removeCurrentGrid();
     generateNewGrid(num*num); // generate NEW grid
     }
-	})
+  })
 }
