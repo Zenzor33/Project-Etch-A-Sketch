@@ -66,7 +66,7 @@ function createGridContainer() {
 function addEventListenersToSquares() {
   const squares = Array.from(document.getElementsByClassName('square'));
 
-	squares.forEach(square => {
+  squares.forEach(square => {
 		square.addEventListener('mouseenter', function () {
 			square.classList = 'squareEnter';
 		})
